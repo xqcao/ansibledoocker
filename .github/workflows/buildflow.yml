@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${env.username}/${env.imagetag}:${{env.versionid}}
+          tags: ${{env.username}}/${{env.imagetag}}:${{env.versionid}}
           build-args: TAGVERSION=${{env.versionid}}
 
       - name: image digest
