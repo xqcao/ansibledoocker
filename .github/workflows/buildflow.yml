@@ -1,6 +1,8 @@
 name: create docker image from workflow
 env:
-  versionid: 2.0.6
+  versionid: 2.0.7
+  username: adamcao
+  imagetag: hellospringmvc
 on:
   push:
     branches:
@@ -38,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: adamcao/hellospringmvc:${{env.versionid}}
+          tags: ${env.username}/${env.imagetag}:${{env.versionid}}
           build-args: TAGVERSION=${{env.versionid}}
 
       - name: image digest
