@@ -1,9 +1,9 @@
 FROM maven:3.6.3-jdk-11-slim AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
-COPY pom_new.xml /workspace/pom.xml
+COPY pom_new.xml /workspace/pom_new.xml
 COPY src /workspace/src
-RUN mvn -B -f pom.xml clean package -DskipTests
+RUN mvn -B -f pom_new.xml clean package -DskipTests
 
 
 FROM openjdk:11.0

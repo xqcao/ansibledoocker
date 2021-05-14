@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: adamcao/hellospringmvc:1.0
+          tags: adamcao/hellospringmvc:$JARVERSION
       - name: image digest
         run: |
           echo ${{steps.docker_build.outputs.digest}}
