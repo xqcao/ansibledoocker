@@ -3,7 +3,7 @@ ARG TAGVERSION
 RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY ./pom.xml /workspace
-RUN sed 's/0.0.1-SNAPSHOT/$TAGVERSION/g' /workspace/pom.xml > /workspace/pom_new.xml
+RUN sed 's/0.0.1-SNAPSHOT/${TAGVERSION}/g' /workspace/pom.xml > /workspace/pom_new.xml
 COPY src /workspace/src
 RUN mvn -B -f /workspace/pom_new.xml clean package -DskipTests
 
