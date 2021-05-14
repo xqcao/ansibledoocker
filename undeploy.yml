@@ -1,0 +1,19 @@
+---
+- name: stop container and cleanup
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+    - name: stop container
+      docker_container:
+        name: hello123
+        state: absent
+    - name: delete image
+      docker_image:
+        name: helloapp:latest
+        state: absent
+      register: deleteimage
+    - name: delete image msg show
+      debug:
+        var: deleteimage

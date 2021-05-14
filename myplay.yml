@@ -1,0 +1,33 @@
+---
+- name: deploy spring boot app to k8s
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+    - name: maven clean  and install
+      shell: mvn clean install
+      register: mvn_result
+    - name: show result
+      debug:
+        var: mvn_result
+    - name: docker build
+      shell: docker build -t helloapp .
+      register: docker_build_result
+    - name: show build msg
+      debug:
+        var: docker_build_result
+    - name: run container
+      # shell: docker run --name hello123 -p 8080:8080 helloapp:latest
+      docker_container:
+        name: hello123
+        image: helloapp:latest
+        restart: false
+        ports:
+          - 8080:8080
+    - name: show docker ps
+      shell: docker ps
+      register: dockerpsmsg
+    - name: containermsg
+      debug:
+        var: dockerpsmsg
