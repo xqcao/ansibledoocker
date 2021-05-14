@@ -17,3 +17,5 @@
     - name: delete image msg show
       debug:
         var: deleteimage
+    - name: mvn clean
+      shell: mvn clean
