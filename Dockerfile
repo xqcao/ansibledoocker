@@ -12,5 +12,6 @@ FROM openjdk:11.0
 # FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=target/*.jar
 COPY --from=build /workspace/${JAR_FILE} myapp.jar
+COPY --from=build /workspace/${JAR_FILE} ./
 EXPOSE 8080
 ENTRYPOINT [ "java","-jar", "myapp.jar" ]
