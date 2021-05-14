@@ -1,6 +1,7 @@
 FROM maven:3.6.3-jdk-11-slim AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
+RUN ls -ll
 COPY pom_new.xml /workspace
 COPY src /workspace/src
 RUN mvn -B -f pom_new.xml clean package -DskipTests
