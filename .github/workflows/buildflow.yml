@@ -26,10 +26,10 @@ jobs:
         run: mvn -B -f pom_new.xml clean package -DskipTests
       - name: Maven verify
         run: mvn -B -f pom_new.xml clean verify
-      # docker:
-      #   runs-on: ubuntu-latest
-      #   name: docker build and push
-      #   steps:
+  docker:
+    runs-on: ubuntu-latest
+    name: docker build and push
+    steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
