@@ -13,5 +13,7 @@ FROM openjdk:11.0
 ARG JAR_FILE=target/*.jar
 COPY --from=build /workspace/${JAR_FILE} myapp.jar
 COPY --from=build /workspace/${JAR_FILE} ./
+COPY --from=build /workspace/pop_new.xml ./
+
 EXPOSE 8080
 ENTRYPOINT [ "java","-jar", "myapp.jar" ]

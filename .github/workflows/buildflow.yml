@@ -1,6 +1,6 @@
 name: create docker image from workflow
 env:
-  versionid: 2.0.2
+  versionid: 2.0.3
 on:
   push:
     branches:
