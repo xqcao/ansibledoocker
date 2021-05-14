@@ -1,6 +1,6 @@
 name: create docker image from workflow
 env:
-  versionid: 2.0.8
+  versionid: 2.0.9
   username: adamcao
   imagetag: hellospringmvc
 on:
@@ -25,7 +25,7 @@ jobs:
       - name: maven build jar
         run: mvn -B -f pom_new.xml clean package -DskipTests
       - name: Maven verify
-        run: mvn -B clean verify
+        run: mvn -B -f pom_new.xml clean verify
       # docker:
       #   runs-on: ubuntu-latest
       #   name: docker build and push
