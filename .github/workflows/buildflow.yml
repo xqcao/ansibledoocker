@@ -13,7 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: change jar version when package
-        run: sed 's/0.0.1-SNAPSHOT/${{env.versionid}}/g' pom.xml > pom_new.xml
+        run: |
+          sed 's/0.0.1-SNAPSHOT/${{env.versionid}}/g' pom.xml > pom_new.xml
+          cat pom_new.xml
       - name: setup jdk11
         uses: actions/setup-java@v1
         with:
@@ -37,6 +39,8 @@ jobs:
         with:
           push: true
           tags: adamcao/hellospringmvc:${{env.versionid}}
+          build-args: TAGVERSION=${{env.versionid}}
+
       - name: image digest
         run: |
           echo ${{steps.docker_build.outputs.digest}}
