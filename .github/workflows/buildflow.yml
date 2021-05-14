@@ -26,6 +26,11 @@ jobs:
         run: mvn -B -f pom_new.xml clean package -DskipTests
       - name: Maven verify
         run: mvn -B -f pom_new.xml clean verify
+      - run: mkdir staging && cp target/*.jar staging
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Package
+          path: staging
   docker:
     runs-on: ubuntu-latest
     name: docker build and push
